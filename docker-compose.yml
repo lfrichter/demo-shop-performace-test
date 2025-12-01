@@ -25,3 +25,13 @@ services:
           -l /results/result.jtl \
           -e -o /results/html-report \
           -Jjmeter.save.saveservice.output_format=csv
+
+  k6:
+    image: grafana/k6:0.54.0
+    container_name: k6_runner
+    volumes:
+      - ./tests/k6/dist:/scripts
+      - ./results:/results
+    working_dir: /scripts
+    command: ["run", "main.js", "--summary-export=/results/k6-summary.json"]
+    # Para CI: usar --out influxdb=http://influx:8086/k6

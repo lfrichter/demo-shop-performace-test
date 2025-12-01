@@ -1,6 +1,7 @@
 # 🚀 E-Commerce Performance Engineering: End-to-End Simulation
 
 ![JMeter](https://img.shields.io/badge/Apache%20JMeter-5.6.3-D22128?logo=apachejmeter&logoColor=white)
+![k6](https://img.shields.io/badge/k6-0.54.0-1A1B1F?logo=k6&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Stable-success)
 ![License](https://img.shields.io/badge/License-MIT-blue)
@@ -129,9 +130,88 @@ The test plan is configured to calculate throughput based on Little's Law, suppo
 * **Load Test:** 1,000 orders/hour to measure baseline latency.
 * **Stress Test:** 100,000 orders/4 hours to identify breaking points and database locks.
 
+
+
+
+## ⚡ Alternative: Run with k6 (TypeScript + Webpack)
+
+Alongside JMeter, this project features a modern **[k6](https://k6.io/)** implementation built with TypeScript and Webpack. This approach champions modularity and Developer Experience (DX), serving as a blueprint for migrating legacy scripts to code-based performance testing.
+
+> ✅ **Key Benefits:**
+>
+>   * **Code Reusability:** Modular logic using imports (e.g., `utils/extraction.ts`).
+>   * **Type Safety:** Full TypeScript support via `@types/k6`.
+>   * **Zero Runtime Deps:** Webpack bundles everything into a single file.
+>   * **Migration Path:** A reference implementation for moving from JMeter to k6.
+
+### 📁 k6 Project Structure
+
+```text
+tests/k6/
+├── src/
+│   ├── entrypoint.ts        # 🎯 Main entry point
+│   └── utils/
+│       └── extraction.ts    # 🧰 Utility functions (CSRF, regex logic)
+├── webpack.config.js        # 📦 Bundles TS → dist/main.js
+├── tsconfig.json
+├── package.json
+└── dist/
+    └── main.js              # ⚙️ Generated bundle (executed by k6)
+```
+
+### ▶️ Local Execution
+
+**Prerequisites:**
+
+  * Node.js ≥ 18
+  * `k6` CLI installed ([Installation Guide](https://k6.io/docs/getting-started/installation/))
+  * Verify with: `k6 version`
+
+```bash
+# 1. Navigate to the k6 directory
+cd tests/k6
+
+# 2. Install dev dependencies (k6 runs pure JS, npm is for dev/build only)
+npm install
+
+# 3. Build with Webpack → generates ./dist/main.js
+npm run pretest
+
+# 4. Run the test
+npm test              # Equivalent to: k6 run dist/main.js
+# OR, build and run in one step:
+npm start
+```
+
+#### 📝 NPM Scripts
+
+| Script    | Command                       | Description                                   |
+| :-------- | :---------------------------- | :-------------------------------------------- |
+| `pretest` | `webpack`                     | Compiles `src/entrypoint.ts` → `dist/main.js` |
+| `test`    | `k6 run dist/main.js`         | Executes the compiled bundle                  |
+| `start`   | `npm run pretest && npm test` | Builds and runs immediately                   |
+
+> ⚠️ **Important:** k6 does **not** execute TypeScript natively. Webpack is required to transpile and bundle the code into a k6-compatible format before execution.
+
+-----
+
+### 🐳 Run with Docker (CI/CD Ready)
+
+For Continuous Integration pipelines (e.g., GitHub Actions), use the following workflow to ensure a clean build environment:
+
+1.  **Install:** `cd tests/k6 && npm ci`
+2.  **Build:** `npm run pretest` (Generates `dist/main.js`)
+3.  **Run:** `docker compose run --rm k6`
+	🕵️ **Verify Execution:** If running in background or debugging, track progress with:
+	```bash
+	docker logs -f k6_runner
+	# OR if using service name:
+	docker compose logs -f k6
+	```
+
 ## 🔮 Future Improvements
 
-* **Migration to k6:** Implementing the same logic in k6 (TypeScript) for better developer experience and lower resource consumption in load generators.
+* **Hybrid Reporting:** Merge JMeter and k6 metrics into a single Grafana dashboard
 * **Frontend Performance:** Integrating **Playwright** to measure "Largest Contentful Paint" (LCP) and "Time to Interactive" (TTI) alongside backend stress.
 * **CI/CD Pipeline:** GitHub Actions workflow to trigger smoke tests on every PR → auto-publish report as artifact.
 
