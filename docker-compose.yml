@@ -1,0 +1,27 @@
+services:
+  jmeter:
+    image: justb4/jmeter:5.5
+    container_name: jmeter_runner
+    platform: linux/amd64
+    volumes:
+      - ./tests/jmeter:/tests   # tudo aqui vira /tests
+      - ./results:/results
+    entrypoint:
+      - sh
+      - -c
+      - |
+        echo "🔍 Arquivos em /tests:"
+        ls -la /tests/
+
+        echo "🔍 Conteúdo do credenciais.csv:"
+        cat /tests/credenciais.csv || echo "❌ Arquivo não encontrado!"
+
+        rm -f /results/result.jtl
+        rm -rf /results/html-report
+        mkdir -p /results
+
+        jmeter -n \
+          -t /tests/Demo-Shop-Performance-Test.jmx \
+          -l /results/result.jtl \
+          -e -o /results/html-report \
+          -Jjmeter.save.saveservice.output_format=csv
