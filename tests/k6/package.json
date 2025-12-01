@@ -1,0 +1,19 @@
+{
+  "name": "accenture-k6-performance",
+  "version": "1.0.0",
+  "scripts": {
+    "config": "tsc --init",
+    "pretest": "webpack",
+    "test": "k6 run dist/main.js",
+    "start": "npm run pretest && npm run test"
+  },
+  "devDependencies": {
+    "@types/k6": "^0.54.0",
+    "@types/node": "^20.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.3.0",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.0"
+  }
+}
