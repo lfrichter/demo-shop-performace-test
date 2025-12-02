@@ -73,8 +73,23 @@ services:
     working_dir: /scripts
     depends_on:
       - influxdb
-    # Mágica aqui: --out influxdb envia métricas em tempo real
+    # --out influxdb envia métricas em tempo real
     command: ["run", "main.js", "--out", "influxdb=http://influxdb:8086/k6"]
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.57.0-jammy
+    container_name: playwright_runner
+    working_dir: /e2e
+    environment:
+      - INFLUX_URL=http://influxdb:8086
+      - CI=true                           # Força modo headless
+    volumes:
+      - ./tests/e2e:/e2e
+    networks:
+      - perf-network
+    depends_on:
+      - influxdb
+    command: /bin/bash -c "npm ci && npx playwright test"
 
 networks:
   perf-network:
