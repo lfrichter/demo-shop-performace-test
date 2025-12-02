@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test:e2e": "cd tests/e2e && npx playwright test",
+    "test:e2e:ui": "cd tests/e2e && npx playwright test --ui",
+    "test:e2e:report": "cd tests/e2e && npx playwright show-report",
+    "test:e2e:watch": "cd tests/e2e && npx playwright test --headed",
+    "test:e2e:clear": "rm -rf tests/e2e/test-results tests/e2e/.cache && echo 'Cache cleared'",
+    "test:e2e:ui:clean": "npm run test:e2e:clear && npm run test:e2e:ui",
+    "test:e2e:docker": "docker compose run --rm playwright",
+    "test:full": "bash run-all.sh"
+  }
+}
