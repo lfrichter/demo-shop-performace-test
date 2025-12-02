@@ -21,6 +21,8 @@
           </elementProp>
         </collectionProp>
       </elementProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
     </TestPlan>
     <hashTree>
       <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
@@ -1301,7 +1303,7 @@
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>
           <name>saveConfig</name>
@@ -1338,7 +1340,7 @@
         <stringProp name="filename">/Users/master/projects/quality/performance-test-demo-shop/results/jmeter-results.csv</stringProp>
       </ResultCollector>
       <hashTree/>
-      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener Influx">
+      <BackendListener guiclass="BackendListenerGui" testclass="BackendListener" testname="Backend Listener Influx" enabled="true">
         <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments">
           <collectionProp name="Arguments.arguments">
             <elementProp name="influxdbMetricsSender" elementType="Argument">
