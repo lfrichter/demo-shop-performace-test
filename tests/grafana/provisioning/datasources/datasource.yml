@@ -3,6 +3,7 @@ apiVersion: 1
 datasources:
   - name: influxdb-jmeter
     type: influxdb
+    uid: influxdb-jmeter
     access: proxy
     url: http://influxdb:8086
     database: jmeter
@@ -11,8 +12,18 @@ datasources:
 
   - name: influxdb-k6
     type: influxdb
+    uid: influxdb-k6
     access: proxy
     url: http://influxdb:8086
     database: k6
+    isDefault: false
+    editable: true
+
+  - name: influxdb-playwright
+    type: influxdb
+    uid: influxdb-playwright
+    access: proxy
+    url: http://influxdb:8086
+    database: playwright
     isDefault: false
     editable: true

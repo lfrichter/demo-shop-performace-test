@@ -25,7 +25,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 2,
-  "id": 0,
+  "id": 1,
   "links": [],
   "panels": [
     {
@@ -84,7 +84,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -218,7 +218,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -350,7 +350,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "description": "",
       "fieldConfig": {
@@ -441,7 +441,7 @@
           "alias": "Failed requests per Second",
           "datasource": {
             "type": "influxdb",
-            "uid": "ef5vl6wo5yh34a"
+            "uid": "influxdb-k6"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -486,7 +486,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -641,7 +641,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -755,7 +755,7 @@
           "alias": "min",
           "datasource": {
             "type": "influxdb",
-            "uid": "ef5vl6wo5yh34a"
+            "uid": "influxdb-k6"
           },
           "dsType": "influxdb",
           "expr": "",
@@ -822,7 +822,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -936,7 +936,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -1050,7 +1050,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -1164,7 +1164,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -1278,7 +1278,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -1394,7 +1394,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -1510,7 +1510,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "description": "Grouped by 1 sec intervals",
       "fieldConfig": {
@@ -1789,7 +1789,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "ef5vl6wo5yh34a"
+        "uid": "influxdb-k6"
       },
       "fieldConfig": {
         "defaults": {
@@ -1898,7 +1898,11 @@
   "preload": false,
   "refresh": "",
   "schemaVersion": 42,
-  "tags": [],
+  "tags": [
+    "performance",
+    "developer-experience",
+    "k6"
+  ],
   "templating": {
     "list": [
       {
@@ -1961,7 +1965,7 @@
         },
         "datasource": {
           "type": "influxdb",
-          "uid": "ef5vl6wo5yh34a"
+          "uid": "influxdb-k6"
         },
         "definition": "",
         "includeAll": true,
@@ -1972,6 +1976,18 @@
         "refresh": 2,
         "regex": "",
         "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "name": "query0",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
         "type": "query"
       }
     ]
@@ -1991,5 +2007,5 @@
   "timezone": "browser",
   "title": "k6 - Load Testing Results",
   "uid": "Reasd",
-  "version": 9
+  "version": 1
 }

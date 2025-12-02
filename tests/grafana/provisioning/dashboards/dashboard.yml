@@ -1,7 +1,7 @@
 apiVersion: 1
 
 providers:
-  - name: 'JMeter & K6 Dashboards'
+  - name: 'JMeter, K6 and Playwright Dashboards'
     orgId: 1
     folder: ''
     type: file

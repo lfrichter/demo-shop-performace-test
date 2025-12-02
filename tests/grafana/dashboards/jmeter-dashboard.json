@@ -23,7 +23,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 3,
   "links": [],
   "panels": [
     {
@@ -2036,7 +2036,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT sum(\"error\") / sum(\"all\") FROM (SELECT sum(\"count\") AS \"all\" FROM \"$measurement_name\" WHERE \"transaction\" =~ /^$transaction$/ AND \"statut\" = 'all' AND \"application\" =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null)), (SELECT sum(\"count\") AS \"error\" FROM \"$measurement_name\" WHERE \"transaction\" =~ /^$transaction$/ AND \"statut\" = 'ko' AND \"application\" =~ /^$application$/ AND $timeFilter GROUP BY time($__interval) fill(null))",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -3021,17 +3021,19 @@
     }
   ],
   "preload": false,
-  "refresh": "auto",
+  "refresh": "5s",
   "schemaVersion": 42,
   "tags": [
-    "load_test"
+    "load_test",
+    "jmeter",
+    "smoke_test"
   ],
   "templating": {
     "list": [
       {
         "current": {
           "text": "influxdb-jmeter",
-          "value": "ef5vkxszyyry8e"
+          "value": "PE3A53FEB7932F265"
         },
         "name": "data_source",
         "options": [],
@@ -3100,7 +3102,7 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Apache JMeter Dashboard using Core InfluxdbBackendListenerClient",
+  "title": "Apache JMeter Dashboard",
   "uid": "f95336fc-472d-4e98-aac0-8703d6c81caf",
-  "version": 4
+  "version": 1
 }
